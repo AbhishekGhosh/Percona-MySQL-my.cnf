@@ -1,8 +1,3 @@
-# see current by running /usr/sbin/mysqld --verbose --help
-# Usage: /usr/sbin/mysqld [OPTIONS]
-# Default options are read from the following files in the given order:
-# /etc/my.cnf /etc/mysql/my.cnf /usr/etc/my.cnf ~/.my.cnf
-# Remember to edit /etc/mysql/debian.cnf when changing the socket location.
 # The following values assume you have at least 4G ram
 
 [mysql]
@@ -15,9 +10,10 @@
 
 # GENERAL #
 # user                           = mysql
-# default-storage-engine         = InnoDB
+default-storage-engine         = InnoDB
 # socket                         = /var/lib/mysql/mysql.sock
 # pid-file                       = /var/lib/mysql/mysql.pid
+skip-name-resolve                = 1
 
 # MyISAM #
 key-buffer-size                = 32M
@@ -37,25 +33,28 @@ expire-logs-days               = 14
 sync-binlog                    = 1
 
 # CACHES AND LIMITS #
-tmp-table-size                 = 32M
-max-heap-table-size            = 32M
-query-cache-type               = 1
-query-cache-size               = 100M
+tmp-table-size                 = 128M
+max-heap-table-size            = 128M
+query-cache-type               = 0
+query-cache-size               = 00
 query_cache_limit              = 256K
 query_cache_min_res_unit       = 2k
-max-connections                = 500
-thread-cache-size              = 50
+max-connections                = 800
+thread-cache-size              = 100
 open-files-limit               = 65535
-table-definition-cache         = 4096
-table-open-cache               = 4096
+table-definition-cache         = 32768
+table-open-cache               = 32768
 
 # INNODB #
 innodb-flush-method            = O_DIRECT
 innodb-log-files-in-group      = 2
-innodb-log-file-size           = 256M
+innodb-log-file-size           = 1G
 innodb-flush-log-at-trx-commit = 1
 innodb-file-per-table          = 1
 innodb-buffer-pool-size        = 4G
+innodb-buffer-pool-instances   = 3
+innodb-large-prefix = true
+innodb-file-per-table = true
 
 # LOGGING #
 log-error                      = /var/lib/mysql/mysql-error.log
