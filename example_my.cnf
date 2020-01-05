@@ -35,8 +35,8 @@ sync-binlog                    = 1
 # CACHES AND LIMITS #
 tmp-table-size                 = 128M
 max-heap-table-size            = 128M
-query-cache-type               = 0
-query-cache-size               = 00
+query-cache-type               = 1
+query-cache-size               = 80M
 query_cache_limit              = 256K
 query_cache_min_res_unit       = 2k
 max-connections                = 800
